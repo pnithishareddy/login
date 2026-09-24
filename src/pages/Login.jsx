@@ -71,7 +71,7 @@ function Login({ onLogin, goRegister, goForgot }) {
       <div className="auth-card">
 
         <div className="logo">
-          Auth<span>Dash</span>
+          LOGIN
         </div>
 
         <h1>Welcome Back</h1>
@@ -141,13 +141,7 @@ function Login({ onLogin, goRegister, goForgot }) {
         <p className="bottom-text">
           Don't have an account?
 
-          <button
-            type="button"
-            onClick={goRegister}
-            className="link-btn"
-          >
-            Register
-          </button>
+<button type="button" onClick={goRegister} className="link-btn" >  Register  </button>
         </p>
 
         <div className="demo-account">
