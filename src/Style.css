@@ -1,3 +1,7 @@
+/* ==============================
+   GLOBAL
+============================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -19,9 +23,10 @@ button {
   cursor: pointer;
 }
 
-/* =========================
-   AUTH
-========================= */
+
+/* ==============================
+   AUTHENTICATION
+============================== */
 
 .auth-container {
   min-height: 100vh;
@@ -42,6 +47,21 @@ button {
   animation: slideUp 0.5s ease;
 }
 
+.auth-card h1 {
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+
+/* ==============================
+   LOGO
+============================== */
+
 .logo {
   font-size: 26px;
   font-weight: bold;
@@ -53,18 +73,10 @@ button {
   color: #111827;
 }
 
-.auth-card h1 {
-  margin-bottom: 8px;
-}
 
-.subtitle {
-  color: #777;
-  margin-bottom: 25px;
-}
-
-/* =========================
+/* ==============================
    INPUT
-========================= */
+============================== */
 
 .input-group {
   margin-bottom: 18px;
@@ -74,18 +86,22 @@ button {
   display: block;
   margin-bottom: 7px;
   font-weight: 600;
+  color: #374151;
 }
 
 .input-group input {
   width: 100%;
   padding: 13px;
-  border: 1px solid #ddd;
+  border: 1px solid #d1d5db;
   border-radius: 9px;
   outline: none;
+  background: white;
+  transition: 0.3s;
 }
 
 .input-group input:focus {
   border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
 }
 
 .password-box {
@@ -93,7 +109,7 @@ button {
 }
 
 .password-box input {
-  padding-right: 60px;
+  padding-right: 65px;
 }
 
 .show-btn {
@@ -104,15 +120,18 @@ button {
   background: transparent;
   color: #0284c7;
   padding: 7px;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .show-btn:hover {
   color: #1e3a8a;
 }
 
-/* =========================
-   FORM OPTIONS
-========================= */
+
+/* ==============================
+   LOGIN OPTIONS
+============================== */
 
 .form-options {
   display: flex;
@@ -128,6 +147,10 @@ button {
   align-items: center;
 }
 
+.remember input {
+  cursor: pointer;
+}
+
 .link-btn {
   border: none;
   background: none;
@@ -137,11 +160,45 @@ button {
 
 .link-btn:hover {
   color: #1e3a8a;
+  text-decoration: underline;
 }
 
-/* =========================
+
+/* ==============================
+   DEMO ACCOUNT
+============================== */
+
+.demo-account {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 10px;
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.demo-account strong {
+  display: block;
+  color: #0369a1;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.demo-account p {
+  margin: 3px 0;
+}
+
+.demo-account span {
+  font-weight: bold;
+  color: #111827;
+}
+
+
+/* ==============================
    BUTTONS
-========================= */
+============================== */
 
 .primary-btn {
   width: 100%;
@@ -191,9 +248,10 @@ button {
   margin-left: 5px;
 }
 
-/* =========================
+
+/* ==============================
    ERROR / SUCCESS
-========================= */
+============================== */
 
 .error {
   background: #fee2e2;
@@ -202,6 +260,7 @@ button {
   border-radius: 8px;
   margin-bottom: 15px;
   font-size: 14px;
+  line-height: 1.4;
 }
 
 .success {
@@ -210,11 +269,13 @@ button {
   padding: 10px;
   border-radius: 8px;
   margin: 15px 0;
+  font-size: 14px;
 }
 
-/* =========================
+
+/* ==============================
    TOAST
-========================= */
+============================== */
 
 .toast {
   position: fixed;
@@ -225,12 +286,14 @@ button {
   padding: 14px 20px;
   border-radius: 10px;
   z-index: 1000;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease;
 }
 
-/* =========================
+
+/* ==============================
    DASHBOARD
-========================= */
+============================== */
 
 .dashboard {
   min-height: 100vh;
@@ -238,12 +301,14 @@ button {
   background: #e5e7eb;
 }
 
-/* =========================
+
+/* ==============================
    SIDEBAR
-========================= */
+============================== */
 
 .sidebar {
   width: 240px;
+  min-height: 100vh;
   background: #374151;
   color: white;
   padding: 25px 15px;
@@ -291,25 +356,32 @@ button {
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: #f4d8ca;
-  color: #0e0d0d;
-  transition: 0.3s;
+  background: #87ceeb;
+  color: #111827;
+  font-weight: bold;
 }
 
 .logout-btn:hover {
-  background: #a8b8f5;
+  background: #1e3a8a;
   color: white;
 }
 
-/* =========================
-   MAIN CONTENT
-========================= */
+
+/* ==============================
+   MAIN DASHBOARD
+============================== */
 
 .main-content {
   flex: 1;
+  min-width: 0;
   padding: 30px;
   background: #e5e7eb;
 }
+
+
+/* ==============================
+   TOP BAR
+============================== */
 
 .topbar {
   display: flex;
@@ -317,14 +389,14 @@ button {
   align-items: center;
 }
 
+.topbar h1 {
+  color: #111827;
+}
+
 .topbar p {
   color: #666;
   margin-top: 5px;
 }
-
-/* =========================
-   PROFILE BUTTON
-========================= */
 
 .profile-btn {
   width: 45px;
@@ -334,7 +406,7 @@ button {
   background: #87ceeb;
   color: #111827;
   font-weight: bold;
-  transition: 0.3s;
+  font-size: 17px;
 }
 
 .profile-btn:hover {
@@ -342,9 +414,10 @@ button {
   color: white;
 }
 
-/* =========================
+
+/* ==============================
    SEARCH
-========================= */
+============================== */
 
 .search-container {
   margin: 30px 0;
@@ -361,15 +434,17 @@ button {
 
 .search-container input:focus {
   border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
 }
 
-/* =========================
+
+/* ==============================
    DASHBOARD CARDS
-========================= */
+============================== */
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -386,7 +461,7 @@ button {
 
 .dashboard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .card-icon {
@@ -398,9 +473,14 @@ button {
   margin-bottom: 7px;
 }
 
-/* =========================
-   RECENT USERS
-========================= */
+.dashboard-card h2 {
+  color: #111827;
+}
+
+
+/* ==============================
+   DASHBOARD SECTION
+============================== */
 
 .dashboard-section {
   background: white;
@@ -415,12 +495,18 @@ button {
 }
 
 .section-header h2 {
-  margin-bottom: 5px;
+  color: #111827;
 }
 
 .section-header p {
   color: #777;
+  margin-top: 5px;
 }
+
+
+/* ==============================
+   USER TABLE
+============================== */
 
 .table-container {
   width: 100%;
@@ -441,7 +527,7 @@ button {
 
 .user-table th {
   background: #f3f4f6;
-  font-weight: bold;
+  color: #374151;
 }
 
 .user-table tr:hover {
@@ -464,9 +550,16 @@ button {
   font-size: 13px;
 }
 
-/* =========================
-   ACTIVITY + INFORMATION
-========================= */
+.empty-state {
+  padding: 30px;
+  text-align: center;
+  color: #777;
+}
+
+
+/* ==============================
+   DASHBOARD ROW
+============================== */
 
 .dashboard-row {
   display: grid;
@@ -483,8 +576,13 @@ button {
 }
 
 .dashboard-box h2 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
+
+
+/* ==============================
+   DASHBOARD ACTIVITIES
+============================== */
 
 .activity {
   display: flex;
@@ -501,11 +599,20 @@ button {
   font-size: 25px;
 }
 
+.activity strong {
+  color: #111827;
+}
+
 .activity p {
   color: #777;
   margin-top: 5px;
   font-size: 14px;
 }
+
+
+/* ==============================
+   QUICK INFORMATION
+============================== */
 
 .info-row {
   display: flex;
@@ -518,24 +625,79 @@ button {
   border-bottom: none;
 }
 
-.info-row span {
-  color: #666;
-}
-
 .info-row strong {
   color: #0284c7;
 }
 
-/* =========================
-   WELCOME
-========================= */
+
+/* ==============================
+   QUICK ACTIONS
+============================== */
+
+.quick-actions {
+  margin-top: 25px;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.quick-actions h2 {
+  margin-bottom: 20px;
+}
+
+.quick-action-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  background: #87ceeb;
+  color: #111827;
+  text-align: left;
+  transition: 0.3s;
+}
+
+.quick-action-btn:hover {
+  background: #1e3a8a;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.quick-action-btn span {
+  font-size: 25px;
+}
+
+.quick-action-btn strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.quick-action-btn p {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+
+/* ==============================
+   WELCOME BOX
+============================== */
 
 .welcome-box {
   margin-top: 25px;
   background: white;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.welcome-box h2 {
+  color: #111827;
 }
 
 .welcome-box p {
@@ -548,46 +710,179 @@ button {
   padding: 10px 20px;
 }
 
-/* =========================
-   EMPTY STATE
-========================= */
 
-.empty-state {
+/* ==============================
+   PROFILE PAGE
+============================== */
+
+.profile-page {
+  min-height: 100vh;
+  padding: 30px;
+  background: #e5e7eb;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.back-btn,
+.logout-small {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #87ceeb;
+  color: #111827;
+  transition: 0.3s;
+}
+
+.back-btn:hover,
+.logout-small:hover {
+  background: #1e3a8a;
+  color: white;
+}
+
+.profile-container {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.profile-card {
   background: white;
   padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  grid-column: 1 / -1;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* =========================
-   DEMO ACCOUNT
-========================= */
 
-.demo-account {
-  margin-top: 20px;
-  padding: 12px;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+/* ==============================
+   PROFILE MAIN CARD
+============================== */
+
+.profile-main-card {
   text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #87ceeb;
+  color: #111827;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.profile-main-card h1 {
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.profile-main-card p {
+  color: #777;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 15px;
+  border-radius: 20px;
+  background: #dcfce7;
+  color: #15803d;
   font-size: 13px;
-  color: #555;
 }
 
-.demo-account strong {
+
+/* ==============================
+   REAL LOGIN ACTIVITY
+============================== */
+
+.recent-activity {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.recent-activity h2 {
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.profile-activity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-activity:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f9ff;
+  border-radius: 10px;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.activity-details {
+  flex: 1;
+}
+
+.activity-details strong {
   display: block;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.activity-details p {
   color: #0284c7;
-  margin-bottom: 6px;
+  font-size: 13px;
+  margin-bottom: 4px;
 }
 
-.demo-account p {
-  margin: 3px 0;
+.activity-details small {
+  color: #777;
+  font-size: 12px;
 }
 
-/* =========================
+.no-activity {
+  padding: 20px 0;
+  color: #777;
+  text-align: center;
+}
+
+
+/* ==============================
+   PASSWORD INFORMATION
+============================== */
+
+.password-info {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+
+/* ==============================
    SETTINGS
-========================= */
+============================== */
 
 .settings-page {
   min-height: 100vh;
@@ -598,7 +893,6 @@ button {
 .settings-main {
   flex: 1;
   padding: 30px;
-  background: #e5e7eb;
 }
 
 .settings-header {
@@ -606,6 +900,10 @@ button {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+}
+
+.settings-header h1 {
+  color: #111827;
 }
 
 .settings-header p {
@@ -620,10 +918,6 @@ button {
   margin-bottom: 20px;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-.settings-card h2 {
-  margin-bottom: 5px;
 }
 
 .settings-description {
@@ -641,7 +935,7 @@ button {
 
 .settings-option strong {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .settings-option p {
@@ -661,28 +955,21 @@ button {
   border-radius: 10px;
 }
 
-.account-info strong {
-  display: block;
-  margin-bottom: 7px;
-}
-
-.account-info p {
-  color: #666;
-}
-
 .save-settings {
   width: auto;
   padding: 12px 25px;
 }
 
-/* =========================
-   SWITCH
-========================= */
+
+/* ==============================
+   SETTINGS SWITCH
+============================== */
 
 .switch {
   position: relative;
   width: 48px;
   height: 25px;
+  flex-shrink: 0;
 }
 
 .switch input {
@@ -696,7 +983,6 @@ button {
   inset: 0;
   background: #ccc;
   border-radius: 20px;
-  cursor: pointer;
   transition: 0.3s;
 }
 
@@ -720,136 +1006,10 @@ button {
   transform: translateX(23px);
 }
 
-/* =========================
-   DARK MODE
-========================= */
 
-.settings-page.dark {
-  background: #111827;
-  color: white;
-}
-
-.settings-page.dark .settings-main {
-  background: #111827;
-}
-
-.settings-page.dark .settings-card {
-  background: #1f2937;
-  color: white;
-}
-
-.settings-page.dark .settings-description,
-.settings-page.dark .settings-option p {
-  color: #d1d5db;
-}
-
-.settings-page.dark .settings-option {
-  border-color: #374151;
-}
-
-.settings-page.dark .account-info div {
-  background: #374151;
-}
-
-.settings-page.dark .account-info p {
-  color: #d1d5db;
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-page {
-  min-height: 100vh;
-  padding: 30px;
-  background: #e5e7eb;
-}
-
-.profile-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
-
-.back-btn,
-.logout-small {
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.back-btn {
-  background: #87ceeb;
-  color: #111827;
-}
-
-.back-btn:hover {
-  background: #1e3a8a;
-  color: white;
-}
-
-.logout-small {
-  background: #87ceeb;
-  color: #111827;
-}
-
-.logout-small:hover {
-  background: #1e3a8a;
-  color: white;
-}
-
-.profile-container {
-  max-width: 1000px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.profile-card {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-.profile-card:first-child {
-  text-align: center;
-}
-
-.avatar {
-  width: 80px;
-  height: 80px;
-  margin: auto;
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background: #87ceeb;
-  color: #111827;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.profile-card h2 {
-  margin-bottom: 20px;
-}
-
-.status {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 6px 15px;
-  border-radius: 20px;
-  background: #dcfce7;
-  color: #15803d;
-  font-size: 13px;
-}
-
-/* =========================
+/* ==============================
    MODAL
-========================= */
+============================== */
 
 .modal-overlay {
   position: fixed;
@@ -859,6 +1019,7 @@ button {
   justify-content: center;
   align-items: center;
   z-index: 100;
+  padding: 20px;
 }
 
 .modal {
@@ -868,7 +1029,11 @@ button {
   background: white;
   padding: 30px;
   border-radius: 15px;
-  animation: slideUp 0.3s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  margin-bottom: 20px;
 }
 
 .close-btn {
@@ -878,41 +1043,31 @@ button {
   border: none;
   background: none;
   font-size: 25px;
+  color: #555;
 }
 
 .close-btn:hover {
-  color: #1e3a8a;
+  color: #111827;
 }
 
-/* =========================
-   OLD SETTINGS SUPPORT
-========================= */
 
-.settings-content {
-  margin-top: 20px;
-}
+/* ==============================
+   LOADING
+============================== */
 
-.setting-row {
+.loading {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 15px 0;
-  border-bottom: 1px solid #e5e7eb;
+  min-height: 100px;
+  color: #0284c7;
+  font-weight: bold;
 }
 
-.setting-row strong {
-  display: block;
-  margin-bottom: 5px;
-}
 
-.setting-row p {
-  color: #777;
-  font-size: 13px;
-}
-
-/* =========================
+/* ==============================
    ANIMATIONS
-========================= */
+============================== */
 
 @keyframes slideUp {
   from {
@@ -936,26 +1091,29 @@ button {
   }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
 
-@media (max-width: 900px) {
+/* ==============================
+   TABLET
+============================== */
+
+@media (max-width: 1100px) {
 
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .profile-container {
-    grid-template-columns: 1fr;
+  .quick-action-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .dashboard-row {
-    grid-template-columns: 1fr;
-  }
 }
 
-@media (max-width: 650px) {
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 900px) {
 
   .dashboard {
     display: block;
@@ -963,15 +1121,17 @@ button {
 
   .sidebar {
     width: 100%;
+    min-height: auto;
   }
 
   .sidebar nav {
     display: flex;
-    gap: 5px;
+    gap: 7px;
   }
 
   .sidebar nav button {
     text-align: center;
+    margin-bottom: 0;
   }
 
   .logout-btn {
@@ -982,16 +1142,12 @@ button {
     padding: 20px;
   }
 
-  .cards {
+  .dashboard-row {
     grid-template-columns: 1fr;
   }
 
-  .auth-card {
-    padding: 25px 20px;
-  }
-
-  .profile-page {
-    padding: 20px;
+  .profile-container {
+    grid-template-columns: 1fr;
   }
 
   .settings-page {
@@ -1002,12 +1158,57 @@ button {
     padding: 20px;
   }
 
-  .settings-header {
-    align-items: flex-start;
+}
+
+
+/* ==============================
+   SMALL MOBILE
+============================== */
+
+@media (max-width: 650px) {
+
+  .auth-container {
+    padding: 15px;
+  }
+
+  .auth-card {
+    padding: 25px 20px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-action-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .profile-page {
+    padding: 15px;
+  }
+
+  .profile-card {
+    padding: 20px;
+  }
+
+  .profile-header {
+    margin-bottom: 20px;
   }
 
   .account-info {
     grid-template-columns: 1fr;
+  }
+
+  .settings-card {
+    padding: 20px;
+  }
+
+  .settings-header {
+    display: block;
   }
 
   .user-table th,
@@ -1015,4 +1216,58 @@ button {
     padding: 10px;
     font-size: 13px;
   }
+
+  .topbar h1 {
+    font-size: 24px;
+  }
+
+  .dashboard-card {
+    padding: 20px;
+  }
+
+  .profile-activity {
+    align-items: flex-start;
+  }
+
+  .activity-details small {
+    display: block;
+    line-height: 1.4;
+  }
+
+  .toast {
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    text-align: center;
+  }
+
+}
+
+
+/* ==============================
+   VERY SMALL SCREEN
+============================== */
+
+@media (max-width: 450px) {
+
+  .sidebar nav {
+    flex-direction: column;
+  }
+
+  .profile-header {
+    gap: 10px;
+  }
+
+  .back-btn,
+  .logout-small {
+    padding: 9px 11px;
+    font-size: 13px;
+  }
+
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../components/Input";
 
 function Profile({
@@ -7,34 +7,65 @@ function Profile({
   goDashboard,
   logout
 }) {
+
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
 
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] =
-    useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
+  const [activities, setActivities] = useState([]);
+
+  /* LOAD LOGIN ACTIVITY */
+
+  useEffect(() => {
+
+    const savedActivities =
+      JSON.parse(localStorage.getItem("loginActivities")) || [];
+
+    const userActivities = savedActivities.filter(
+      (item) => item.email === user.email
+    );
+
+    setActivities(userActivities);
+
+  }, [user.email]);
+
+  /* FORMAT DATE AND TIME */
+
+  const formatDateTime = (time) => {
+
+    const date = new Date(time);
+
+    return date.toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  };
+
+  /* UPDATE PROFILE */
+
   const updateProfile = (e) => {
+
     e.preventDefault();
 
     setMessage("");
     setError("");
 
     if (!name || !email) {
-      setError(
-        "Name and email are required"
-      );
+      setError("Name and email are required");
       return;
     }
 
     if (!email.includes("@")) {
-      setError(
-        "Enter a valid email"
-      );
+      setError("Enter a valid email");
       return;
     }
 
@@ -46,13 +77,13 @@ function Profile({
 
     updateUser(updatedUser);
 
-    setMessage(
-      "Profile updated successfully"
-    );
+    setMessage("Profile updated successfully");
   };
 
+  /* CHANGE PASSWORD */
 
   const changePassword = (e) => {
+
     e.preventDefault();
 
     setMessage("");
@@ -63,16 +94,12 @@ function Profile({
       !newPassword ||
       !confirmPassword
     ) {
-      setError(
-        "Please fill all password fields"
-      );
+      setError("Please fill all password fields");
       return;
     }
 
     if (oldPassword !== user.password) {
-      setError(
-        "Current password is incorrect"
-      );
+      setError("Current password is incorrect");
       return;
     }
 
@@ -80,16 +107,18 @@ function Profile({
       /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])\S{8,}$/;
 
     if (!passwordPattern.test(newPassword)) {
+
       setError(
         "Password must contain at least 8 characters, one capital letter, one number, one special character, and no spaces"
       );
+
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      setError(
-        "New passwords do not match"
-      );
+
+      setError("New passwords do not match");
+
       return;
     }
 
@@ -111,16 +140,13 @@ function Profile({
     setNewPassword("");
     setConfirmPassword("");
 
-    setMessage(
-      "Password changed successfully"
-    );
+    setMessage("Password changed successfully");
   };
-
 
   return (
     <div className="profile-page">
 
-      {/* Header */}
+      {/* HEADER */}
 
       <div className="profile-header">
 
@@ -140,42 +166,87 @@ function Profile({
 
       </div>
 
-
       <div className="profile-container">
 
+        {/* LEFT SIDE */}
 
-        {/* Profile Information */}
+        <div>
 
-        <div className="profile-card">
+          {/* PROFILE CARD */}
 
-          <div className="avatar">
-            {user.name
-              .charAt(0)
-              .toUpperCase()}
+          <div className="profile-card profile-main-card">
+
+            <div className="avatar">
+              {user.name.charAt(0).toUpperCase()}
+            </div>
+
+            <h1>{user.name}</h1>
+
+            <p>{user.email}</p>
+
+            <span className="status">
+              Active
+            </span>
+
           </div>
 
-          <h1>
-            {user.name}
-          </h1>
+          {/* REAL LOGIN ACTIVITY */}
 
-          <p>
-            {user.email}
-          </p>
+          <div className="profile-card recent-activity">
 
-          <span className="status">
-            Active
-          </span>
+            <h2>🕒 Recent Login Activity</h2>
+
+            {activities.length > 0 ? (
+
+              activities.map((activity, index) => (
+
+                <div
+                  className="profile-activity"
+                  key={index}
+                >
+
+                  <span className="activity-icon">
+                    {activity.icon}
+                  </span>
+
+                  <div className="activity-details">
+
+                    <strong>
+                      {activity.device}
+                    </strong>
+
+                    <p>
+                      {activity.browser}
+                    </p>
+
+                    <small>
+                      Logged in:{" "}
+                      {formatDateTime(activity.time)}
+                    </small>
+
+                  </div>
+
+                </div>
+
+              ))
+
+            ) : (
+
+              <div className="no-activity">
+                No login activity found
+              </div>
+
+            )}
+
+          </div>
 
         </div>
 
-
-        {/* Edit Profile */}
+        {/* EDIT PROFILE */}
 
         <div className="profile-card">
 
-          <h2>
-            Edit Profile
-          </h2>
+          <h2>Edit Profile</h2>
 
           <form onSubmit={updateProfile}>
 
@@ -209,14 +280,11 @@ function Profile({
 
         </div>
 
-
-        {/* Change Password */}
+        {/* CHANGE PASSWORD */}
 
         <div className="profile-card">
 
-          <h2>
-            Change Password
-          </h2>
+          <h2>Change Password</h2>
 
           <form onSubmit={changePassword}>
 
@@ -225,9 +293,7 @@ function Profile({
               type="password"
               value={oldPassword}
               onChange={(e) =>
-                setOldPassword(
-                  e.target.value
-                )
+                setOldPassword(e.target.value)
               }
               placeholder="Enter current password"
             />
@@ -237,9 +303,7 @@ function Profile({
               type="password"
               value={newPassword}
               onChange={(e) =>
-                setNewPassword(
-                  e.target.value
-                )
+                setNewPassword(e.target.value)
               }
               placeholder="Enter new password"
             />
@@ -249,20 +313,12 @@ function Profile({
               type="password"
               value={confirmPassword}
               onChange={(e) =>
-                setConfirmPassword(
-                  e.target.value
-                )
+                setConfirmPassword(e.target.value)
               }
               placeholder="Confirm new password"
             />
 
-            <p
-              style={{
-                fontSize: "13px",
-                color: "#777",
-                marginBottom: "15px"
-              }}
-            >
+            <p className="password-info">
               Password must contain at least
               8 characters, one capital letter,
               one number, one special character,
