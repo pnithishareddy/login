@@ -28,28 +28,78 @@ function Dashboard({
       title: "Notifications",
       value: "12",
       icon: "🔔"
+    },
+    {
+      title: "New Users",
+      value: "48",
+      icon: "➕"
+    },
+    {
+      title: "Revenue",
+      value: "₹85,600",
+      icon: "💰"
     }
   ];
 
-  const filteredCards = cards.filter((card) =>
-    card.title
-      .toLowerCase()
-      .includes(search.toLowerCase())
+  const users = [
+    {
+      id: 1,
+      name: "Rahul",
+      email: "rahul@gmail.com",
+      status: "Active",
+      role: "User"
+    },
+    {
+      id: 2,
+      name: "Priya",
+      email: "priya@gmail.com",
+      status: "Active",
+      role: "Admin"
+    },
+    {
+      id: 3,
+      name: "Arun",
+      email: "arun@gmail.com",
+      status: "Inactive",
+      role: "User"
+    },
+    {
+      id: 4,
+      name: "Sneha",
+      email: "sneha@gmail.com",
+      status: "Active",
+      role: "User"
+    },
+    {
+      id: 5,
+      name: "Kiran",
+      email: "kiran@gmail.com",
+      status: "Inactive",
+      role: "User"
+    }
+  ];
+
+  const filteredUsers = users.filter(
+    (item) =>
+      item.name
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      item.email
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      item.role
+        .toLowerCase()
+        .includes(search.toLowerCase())
   );
 
   return (
     <div className="dashboard">
-
-      {/* Sidebar */}
-
       <aside className="sidebar">
-
         <div className="logo">
           Auth<span>Dash</span>
         </div>
 
         <nav>
-
           <button className="active">
             Dashboard
           </button>
@@ -61,7 +111,6 @@ function Dashboard({
           <button onClick={goSettings}>
             Settings
           </button>
-
         </nav>
 
         <button
@@ -70,101 +119,197 @@ function Dashboard({
         >
           Logout
         </button>
-
       </aside>
-
-
-      {/* Main Content */}
 
       <main className="main-content">
 
         <header className="topbar">
-
           <div>
-
-            <h1>
-              Dashboard
-            </h1>
+            <h1>Dashboard</h1>
 
             <p>
               Welcome back, {user.name}
             </p>
-
           </div>
 
           <button
             onClick={goProfile}
             className="profile-btn"
           >
-            {user.name
-              .charAt(0)
-              .toUpperCase()}
+            {user.name.charAt(0).toUpperCase()}
           </button>
-
         </header>
 
-
-        {/* Search */}
-
         <div className="search-container">
-
           <input
             type="text"
-            placeholder="Search dashboard..."
+            placeholder="Search users..."
             value={search}
             onChange={(e) =>
               setSearch(e.target.value)
             }
           />
-
         </div>
-
-
-        {/* Dashboard Cards */}
 
         <section className="cards">
 
-          {filteredCards.length > 0 ? (
-
-            filteredCards.map((card) => (
-
-              <div
-                className="dashboard-card"
-                key={card.title}
-              >
-
-                <div className="card-icon">
-                  {card.icon}
-                </div>
-
-                <div>
-
-                  <p>
-                    {card.title}
-                  </p>
-
-                  <h2>
-                    {card.value}
-                  </h2>
-
-                </div>
-
+          {cards.map((card) => (
+            <div
+              className="dashboard-card"
+              key={card.title}
+            >
+              <div className="card-icon">
+                {card.icon}
               </div>
 
-            ))
-
-          ) : (
-
-            <div className="empty-state">
-              No results found
+              <div>
+                <p>{card.title}</p>
+                <h2>{card.value}</h2>
+              </div>
             </div>
-
-          )}
+          ))}
 
         </section>
 
+        <section className="dashboard-section">
 
-        {/* Welcome Section */}
+          <div className="section-header">
+            <div>
+              <h2>Recent Users</h2>
+
+              <p>
+                Recently registered users
+              </p>
+            </div>
+          </div>
+
+          <div className="table-container">
+
+            {filteredUsers.length > 0 ? (
+
+              <table className="user-table">
+
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  {filteredUsers.map((item) => (
+                    <tr key={item.id}>
+
+                      <td>
+                        {item.id}
+                      </td>
+
+                      <td>
+                        {item.name}
+                      </td>
+
+                      <td>
+                        {item.email}
+                      </td>
+
+                      <td>
+                        {item.role}
+                      </td>
+
+                      <td>
+                        <span
+                          className={
+                            item.status === "Active"
+                              ? "status-active"
+                              : "status-inactive"
+                          }
+                        >
+                          {item.status}
+                        </span>
+                      </td>
+
+                    </tr>
+                  ))}
+
+                </tbody>
+
+              </table>
+
+            ) : (
+
+              <div className="empty-state">
+                No users found
+              </div>
+
+            )}
+
+          </div>
+
+        </section>
+
+        <section className="dashboard-row">
+
+          <div className="dashboard-box">
+
+            <h2>Recent Activities</h2>
+
+            <div className="activity">
+              <span>👤</span>
+              <div>
+                <strong>New user registered</strong>
+                <p>Rahul created an account</p>
+              </div>
+            </div>
+
+            <div className="activity">
+              <span>🔑</span>
+              <div>
+                <strong>Password changed</strong>
+                <p>Priya changed her password</p>
+              </div>
+            </div>
+
+            <div className="activity">
+              <span>📧</span>
+              <div>
+                <strong>New message</strong>
+                <p>You received a new message</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="dashboard-box">
+
+            <h2>Quick Information</h2>
+
+            <div className="info-row">
+              <span>Account Status</span>
+              <strong>Active</strong>
+            </div>
+
+            <div className="info-row">
+              <span>Login Status</span>
+              <strong>Online</strong>
+            </div>
+
+            <div className="info-row">
+              <span>Role</span>
+              <strong>Administrator</strong>
+            </div>
+
+            <div className="info-row">
+              <span>Notifications</span>
+              <strong>12</strong>
+            </div>
+
+          </div>
+
+        </section>
 
         <section className="welcome-box">
 
@@ -188,7 +333,6 @@ function Dashboard({
         </section>
 
       </main>
-
     </div>
   );
 }
